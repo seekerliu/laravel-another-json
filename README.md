@@ -2,6 +2,8 @@
 
 Yet Another JSON Encoder For Laravel.
 用于修复 PHP7 中 json_encode 函数溢出的问题.
+> 感谢博主提供的思路 [http://www.itread01.com/articles/1489774743.html](http://www.itread01.com/articles/1489774743.html)
+
 
 ## 用法
 

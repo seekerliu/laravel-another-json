@@ -84,19 +84,26 @@ class YaJson
         return floatval($formatted);
     }
 
-    private function preJsonEncode($d, $depth=128, $level=0){
-        if($level>$depth) return $d;
-        if(is_array($d)){
-            foreach ($d as $i => $v) { $d[$i] = json_encode_pre($v, $depth, $level+1); }
-            return $d;
-        }
-        if(is_float($d)){
-            # 測試發現number_format有效數字低於18(保守取16)時,不會溢出
-            $p = 16 - strlen(intval($d));
-            $f = number_format($d, $p);
-            if($p>1){ $f = preg_replace('/0+$/','', $d); }
-            return $d;
-        }
-        return $d;
-    }
+    /**
+     * 原博的方法，供参考：
+     * @param $d
+     * @param int $depth
+     * @param int $level
+     * @return array
+     */
+//    private function json_encode_pre($d, $depth=128, $level=0){
+//        if($level>$depth) return $d;
+//        if(is_array($d)){
+//            foreach ($d as $i => $v) { $d[$i] = json_encode_pre($v, $depth, $level+1); }
+//            return $d;
+//        }
+//        if(is_float($d)){
+//            # 測試發現number_format有效數字低於18(保守取16)時,不會溢出
+//            $p = 16 - strlen(intval($d));
+//            $f = number_format($d, $p);
+//            if($p>1){ $f = preg_replace('/0+$/','', $d); }
+//            return $d;
+//        }
+//        return $d;
+//    }
 }
