@@ -3,6 +3,15 @@
 Yet Another JSON Encoder For Laravel.
 用于修复 PHP7 中 json_encode 函数溢出的问题.
 
+## 用法
+
+  ```shell
+  >>> $a = 0.1 + 0.7
+  => 0.8
+  >>> echo \YaJson::encode(['a'=>$a])
+  => {"a":0.8}
+  ```
+  
 ## 安装
 
 1. 安装包文件
