@@ -8,6 +8,11 @@
             "email": "seekerliu@vip.qq.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Seekerliu\\YaJson\\": "src/"
+        }
+    },
     "minimum-stability": "dev",
     "require": {},
     "extra": {
