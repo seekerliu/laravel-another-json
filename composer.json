@@ -1,0 +1,23 @@
+{
+    "name": "seekerliu/laravel-another-json",
+    "description": "Yet Another JSON encoder for Laravel.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "seekerliu",
+            "email": "seekerliu@vip.qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Seekerliu\\YaJson\\ServiceProvider"
+            ],
+            "aliases": {
+                "YaJson": "Seekerliu\\YaJson\\Facade"
+            }
+        }
+    }
+}
