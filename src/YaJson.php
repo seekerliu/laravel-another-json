@@ -21,8 +21,6 @@ class YaJson
      */
     public function __construct($config)
     {
-//        $this->depth = $config['depth'];
-//        $this->decimals = $config['decimals'];
         $this->decPoint = $config['dec_point'];
         $this->thousandsSep = $config['thousands_sep'];
     }
