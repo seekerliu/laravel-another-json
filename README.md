@@ -50,13 +50,16 @@ Yet Another JSON Encoder For Laravel.
 ## 配置
 
 ### Laravel 5.5
+
+>  `Laravel 5.5` 安装新包后会默认执行 `@php artisan package:discover` 命令，所以可以不进行下面的操作。
+
 1. 注册 `ServiceProvider` 及 `Facade`:
 
   ```shell
   php artisan package:discover
   ```
 
-2. 创建配置文件：
+2. 如需修改默认循环深度、精度位数，则创建配置文件：
  
   ```shell
   php artisan vendor:publish
@@ -80,7 +83,7 @@ Yet Another JSON Encoder For Laravel.
   ```
  
 
-2. 创建配置文件：
+2. 如需修改默认循环深度、精度位数，则创建配置文件：
 
   ```shell
   php artisan vendor:publish --provider="Seekerliu\YaJson\ServiceProvider"
