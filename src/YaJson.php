@@ -7,13 +7,10 @@
 
 namespace Seekerliu\YaJson;
 
-
 class YaJson
 {
     private $depth;
     private $decimals;
-    private $decPoint;
-    private $thousandsSep;
 
     /**
      * YaJson constructor.
@@ -21,46 +18,49 @@ class YaJson
      */
     public function __construct($config)
     {
-        $this->decPoint = $config['dec_point'];
-        $this->thousandsSep = $config['thousands_sep'];
+        $this->depth = $config['depth'];
+        $this->decimals = $config['decimals'];
     }
 
     /**
      * 对数据进行 json_encode
      * @param mixed $data
-     * @param int $depth
-     * @param int $decimals
+     * @param int $depth 遍历的深度
+     * @param int $decimals 给浮点数定精度，默认为 8
      * @return string
      */
-    public function encode($data = null, $decimals = 8, $depth = 512)
+    public function encode($data = '', $decimals = 0, $depth = 0)
     {
-        if(!$data) {
-            return json_encode('');
-        }
-
-        return json_encode($this->prepare($data, $decimals, $depth));
+        $data = $this->prepare($data, $decimals, $depth);
+        return json_encode($data);
     }
 
     /**
      * 对数据进行遍历，修复浮点数的精度
-     * @param null $data
+     * @param string $data
      * @param int $decimals
      * @param int $depth
      * @param int $level
-     * @return array|float|null
+     * @return mixed $data
      */
-    public function prepare($data = null, $decimals = 8, $depth = 512, $level = 0)
+    public function prepare($data = '', $decimals = 0, $depth = 0, $level = 0)
     {
-        if($level > $depth) return $data;
+        $depth = $depth ?: $this->depth;
+
+        if($level > $depth - 1)
+            return $data;
 
         if(is_array($data)){
-            foreach ($data as $i => $v) { $data[$i] = $this->prepare($v, $decimals, $depth, $level+1); }
+            foreach ($data as $i => $v) {
+                $data[$i] = $this->prepare($v, $decimals, $depth, $level + 1);
+            }
             return $data;
         }
 
         if(is_float($data)){
             return $this->fixNumberPrecision($data, $decimals);
         }
+
         return $data;
     }
 
@@ -70,25 +70,21 @@ class YaJson
      * @param int $decimals
      * @return float
      */
-    private function fixNumberPrecision($number, $decimals = 8)
+    private function fixNumberPrecision($number, $decimals = 0)
     {
-        $formatted = number_format(
-            $number,
-            $decimals,
-            $this->decPoint,
-            $this->thousandsSep
-        );
+        $decimals = $decimals ?: $this->decimals;
+        $formatted = number_format($number, $decimals, '.', '');
 
         return floatval($formatted);
     }
 
-    /**
-     * 原博的方法，供参考：
-     * @param $d
-     * @param int $depth
-     * @param int $level
-     * @return array
-     */
+//    /**
+//     * 原博提供的方法，供参考：
+//     * @param $d
+//     * @param int $depth
+//     * @param int $level
+//     * @return array
+//     */
 //    private function json_encode_pre($d, $depth=128, $level=0){
 //        if($level>$depth) return $d;
 //        if(is_array($d)){
