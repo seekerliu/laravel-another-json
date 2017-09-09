@@ -34,13 +34,13 @@ class YaJson
      * @param int $decimals
      * @return string
      */
-    public function encode($data = null, $decimals = 11, $depth = 512)
+    public function encode($data = null, $decimals = 8, $depth = 512)
     {
         if(!$data) {
             return json_encode('');
         }
 
-        return json_encode($this->prepareData($data, $decimals, $depth));
+        return json_encode($this->prepare($data, $decimals, $depth));
     }
 
     /**
@@ -51,12 +51,12 @@ class YaJson
      * @param int $level
      * @return array|float|null
      */
-    private function prepareData($data = null, $decimals = 11, $depth = 512, $level = 0)
+    public function prepare($data = null, $decimals = 8, $depth = 512, $level = 0)
     {
         if($level > $depth) return $data;
 
         if(is_array($data)){
-            foreach ($data as $i => $v) { $data[$i] = $this->prepareData($v, $decimals, $depth, $level+1); }
+            foreach ($data as $i => $v) { $data[$i] = $this->prepare($v, $decimals, $depth, $level+1); }
             return $data;
         }
 
@@ -72,7 +72,7 @@ class YaJson
      * @param int $decimals
      * @return float
      */
-    private function fixNumberPrecision($number, $decimals = 11)
+    private function fixNumberPrecision($number, $decimals = 8)
     {
         $formatted = number_format(
             $number,

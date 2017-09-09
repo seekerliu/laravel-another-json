@@ -1,17 +1,42 @@
 # laravel-anothor-json
 
-Yet Another JSON Encoder For Laravel.
-用于修复 PHP7 中 json_encode 函数溢出的问题.
+Yet Another JSON Encoder For Laravel.  
+用于修复 PHP7 中 json_encode 处理 double 时溢出的问题.
 > 感谢博主提供的思路 [http://www.itread01.com/articles/1489774743.html](http://www.itread01.com/articles/1489774743.html)
 
 
-## 用法
+##示例
 
   ```shell
   >>> $a = 0.1 + 0.7
   => 0.8
-  >>> echo \YaJson::encode(['a'=>$a])
-  => {"a":0.8}
+  >>> printf('%.20f', $a)
+  => 0.79999999999999993339
+  >>> json_encode($a)
+  => "0.7999999999999999"
+  >>> \YaJson::encode($a)
+  => "0.8"
+  ```
+
+## 用法
+1. 修复精度并进行 `json_encode` ：
+  ```php
+  $data = [
+      'a' => 0.1 + 0.7,
+      'b' => ['string1', 'string2'],
+  ];
+  
+ \YaJson::encode($data);
+  ```
+  
+2. 只获取修复后的数据，不进行 `json_encode` ：
+  ```php
+  $data = [
+      'a' => 0.1 + 0.7,
+      'b' => ['string1', 'string2'],
+  ];
+  
+ \YaJson::prepare($data);
   ```
   
 ## 安装
