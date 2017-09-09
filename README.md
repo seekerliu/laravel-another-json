@@ -5,7 +5,7 @@ Yet Another JSON Encoder For Laravel.
 > 感谢博主提供的思路 [http://www.itread01.com/articles/1489774743.html](http://www.itread01.com/articles/1489774743.html)
 
 
-##示例
+## 示例
 
   ```shell
   >>> $a = 0.1 + 0.7
