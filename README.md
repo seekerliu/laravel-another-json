@@ -38,13 +38,13 @@ Yet Another JSON Encoder For Laravel.
   
  \YaJson::prepare($data);
  /**
-     [
-         "a" => 0.8,
-         "b" => [
-             "string1",
-             "string2",
-         ],
-     ]
+ [
+   "a" => 0.8,
+   "b" => [
+     "string1",
+     "string2",
+   ],
+ ]
   */
   ```
   
