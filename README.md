@@ -26,7 +26,7 @@ Yet Another JSON Encoder For Laravel.
       'b' => ['string1', 'string2'],
   ];
   
- \YaJson::encode($data);
+ \YaJson::encode($data);    //"{"a":0.8,"b":["string1","string2"]}"
   ```
   
 2. 只获取修复后的数据，不进行 `json_encode` ：
@@ -37,6 +37,15 @@ Yet Another JSON Encoder For Laravel.
   ];
   
  \YaJson::prepare($data);
+ /**
+     [
+         "a" => 0.8,
+         "b" => [
+             "string1",
+             "string2",
+         ],
+     ]
+  /*
   ```
   
 ## 安装
