@@ -33,19 +33,9 @@ Yet Another JSON Encoder For Laravel.
   ```php
   $data = [
       'a' => 0.1 + 0.7,
-      'b' => ['string1', 'string2'],
   ];
   
- \YaJson::prepare($data);
- /**
- [
-   "a" => 0.8,
-   "b" => [
-     "string1",
-     "string2",
-   ],
- ]
-  */
+ \YaJson::prepare($data);   //['a'=>0.8]
   ```
   
 ## 安装
