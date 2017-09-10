@@ -45,7 +45,7 @@ Yet Another JSON Encoder For Laravel.
              "string2",
          ],
      ]
-  /*
+  */
   ```
   
 ## 安装
